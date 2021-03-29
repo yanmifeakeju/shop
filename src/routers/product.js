@@ -10,7 +10,7 @@ const {
   addProduct,
   updateProduct,
   deleteProduct,
-} = require('../controllers/product');
+} = require('../controllers/products');
 const { validObjectId } = require('../middleware/validations');
 const authenticateToken = require('../middleware/authenticateToken');
 

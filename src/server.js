@@ -11,18 +11,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
 require('./models/db')();
-
 const apiUrl = process.env.API_URL;
 const productsRouter = require('./routers/product');
 const categoryRouter = require('./routers/category');
+const orderRouter = require('./routers/order');
 const userRouter = require('./routers/users');
 
 app.use(`${apiUrl}/products`, productsRouter);
 app.use(`${apiUrl}/category`, categoryRouter);
+app.use(`${apiUrl}/orders`, orderRouter);
 app.use(`${apiUrl}/users`, userRouter);
 
 app.get(apiUrl, (req, res, next) => {
   res.send('home');
+});
+
+app.use('*', (req, res) => {
+  res.status(404).send('Resource not found');
 });
 
 module.exports = app;
