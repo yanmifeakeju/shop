@@ -10,7 +10,7 @@ const connectDB = async () => {
     });
 
     console.log(
-      `Connected to localhost on ${connection.connection.host}, port ${connection.connection.port}`
+      `Connected to host ${connection.connection.host} on port ${connection.connection.port}`
     );
   } catch (error) {
     console.log(error);

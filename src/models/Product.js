@@ -14,19 +14,29 @@ const productSchema = new Schema({
     type: String,
     default: '',
   },
-  image: { type: String, default: '' },
+  image: {
+    type: String,
+    default: '',
+  },
   images: [
     {
       type: String,
     },
   ],
-  brand: { type: String, default: '' },
+  brand: {
+    type: String,
+    default: '',
+  },
   price: {
     type: Number,
     default: 0,
     min: 1,
   },
-  category: { type: Schema.Types.ObjectId, ref: 'Category', required: true },
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category',
+    required: true,
+  },
   countInStock: {
     type: Number,
     required: true,
@@ -37,8 +47,14 @@ const productSchema = new Schema({
     type: Number,
     default: 0,
   },
-  isFeatured: { type: Boolean, default: false },
-  dateCreated: { type: Date, default: Date.now },
+  isFeatured: {
+    type: Boolean,
+    default: false,
+  },
+  dateCreated: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = model('Product', productSchema);

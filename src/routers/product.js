@@ -12,8 +12,10 @@ const {
   deleteProduct,
 } = require('../controllers/product');
 const { validObjectId } = require('../middleware/validations');
+const authenticateToken = require('../middleware/authenticateToken');
 
 const router = Router();
+router.use('/:id', authenticateToken);
 router.use('/:id', validObjectId);
 
 router.route('/').get(getProducts).post(addProduct);

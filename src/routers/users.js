@@ -1,9 +1,16 @@
 const { Router } = require('express');
-const { model } = require('mongoose');
-const { addUser } = require('../controllers/users');
+const {
+  addUser,
+  getUser,
+  getUsers,
+  loginUser,
+} = require('../controllers/users');
+const { validObjectId } = require('../middleware/validations');
 
 const router = Router();
 
-router.route('/').post(addUser);
+router.route('/').post(addUser).get(getUsers);
+router.route('/login').post(loginUser);
+router.route('/:id').get(validObjectId, getUser);
 
 module.exports = router;

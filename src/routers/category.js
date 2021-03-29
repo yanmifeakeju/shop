@@ -12,6 +12,7 @@ const { validObjectId } = require('../middleware/validations');
 
 const router = Router();
 router.use('/:id', validObjectId);
+router.use('/:id/*', validObjectId);
 
 router.route('/').post(addCategory).get(getCategories);
 router
