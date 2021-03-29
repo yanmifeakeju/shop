@@ -2,10 +2,18 @@ const Order = require('../models/Order');
 
 exports.createOrder = async (req, res, next) => {
   try {
-    console.log(req.body);
-
+    const user = req.user._id;
+    const { items = undefined } = req.body;
+    const order = await Order.create({
+      user,
+      items,
+    });
+    console.log(order);
     res.send('creating an new order');
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    res.send('an error occured');
+  }
 };
 
 exports.getOrder = async (req, res, next) => {};

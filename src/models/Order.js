@@ -16,12 +16,15 @@ const orderSchema = new Schema({
         type: Number,
         default: 1,
       },
+
+      total: Number,
     },
   ],
   completed: {
     type: Boolean,
     default: false,
   },
+
   total: Number,
 });
 
