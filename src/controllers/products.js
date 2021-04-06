@@ -30,7 +30,7 @@ exports.getProduct = async (req, res, next) => {
 };
 
 exports.addProduct = async (req, res, next) => {
-  const {
+  let {
     name = undefined,
     description = undefined,
     richDescription = undefined,
@@ -43,6 +43,14 @@ exports.addProduct = async (req, res, next) => {
     numReviews = undefined,
     isFeatured = undefined,
   } = req.body;
+
+  // if (req.file) {
+  //   image = req.file.filename;
+  // }
+  const basePath = `${req.protocol}://${req.get('host')}`;
+  console.log(req.files);
+  console.log(basePath);
+  return res.send('Hello');
 
   try {
     const isCategory = await Category.findById(category);

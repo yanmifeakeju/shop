@@ -1,9 +1,14 @@
+const path = require('path');
+
 require('dotenv').config();
 const express = require('express');
+const multer = require('multer');
 const morgan = require('morgan');
 const cors = require('cors');
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.options('*', cors());
 app.use(express.json());

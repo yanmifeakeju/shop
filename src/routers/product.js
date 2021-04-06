@@ -1,9 +1,14 @@
 /*
 TODO:
-Adavanced filtered, with featured and price
-*/
+Adavanced filtering -> featured and price
 
+
+
+*/
 const { Router } = require('express');
+const multer = require('multer');
+const upload = require('../middleware/upload');
+
 const {
   getProducts,
   getProduct,
@@ -18,7 +23,16 @@ const router = Router();
 router.use('/:id', authenticateToken);
 router.use('/:id', validObjectId);
 
-router.route('/').get(getProducts).post(addProduct);
+router
+  .route('/')
+  .get(getProducts)
+  .post(
+    upload.fields([
+      { name: 'image', maxCount: 1 },
+      { name: 'images', maxCount: 5 },
+    ]),
+    addProduct
+  );
 router.route('/:id').get(getProduct).put(updateProduct).delete(deleteProduct);
 
 module.exports = router;
